@@ -1,46 +1,51 @@
-import java.util.Scanner;
-
 public class Calculator {
-    public static void main(String[] args){
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Enter an expression with *, /, +, -, %, or ^: ");
-        String expression = scan.nextLine();
+    private double num1;
+    private double num2;
+    private String operType;
 
-        String operationType;
-        int locOperation = 0;
-        double num1;
-        double num2;
+    public Calculator(double num1, double num2, String operType) {
+        this.num1 = num1;
+        this.num2 = num2;
+        this.operType = operType;
+    }
 
-        if (expression.contains("*")){
-            locOperation = expression.indexOf("*");
-        } else if (expression.contains("/")){
-            locOperation = expression.indexOf("/");
-        } else if (expression.contains("+")){
-            locOperation = expression.indexOf("+");
-        } else if (expression.contains("-")){
-            locOperation = expression.indexOf("-");
-        } else if (expression.contains("%")){
-            locOperation = expression.indexOf("%");
-        } else if (expression.contains("^")){
-            locOperation = expression.indexOf("^");
+    public double multiply(){
+        return num1 * num2;
+    }
+
+    public double divide(){
+        return num1 / num2;
+    }
+
+    public double add(){
+        return num1 + num2;
+    }
+
+    public double subtract(){
+        return num1 - num2;
+    }
+
+    public double mod(){
+        return num1 % num2;
+    }
+
+    public double pow(){
+        return Math.pow(num1, num2);
+    }
+
+    public double calculate(){
+        if (operType.equals("*")){
+            return multiply();
+        } else if (operType.equals("/")){
+            return divide();
+        } else if (operType.equals("+")){
+            return add();
+        } else if (operType.equals("-")){
+            return subtract();
+        } else if (operType.equals("%")){
+            return mod();
         } else {
-            System.out.println("invalid expression entered");
+            return pow();
         }
-
-        //parsing
-
-        String firstNumStr = expression.substring(0,locOperation);
-        String secondNumStr = expression.substring(locOperation + 1);
-        firstNumStr = firstNumStr.replaceAll("\\s", "");
-        secondNumStr = secondNumStr.replaceAll("\\s", "");
-        double firstNum = Double.parseDouble(firstNumStr);
-        double secondNum = Double.parseDouble(secondNumStr);
-
-
-
-
-
-
-
     }
 }
